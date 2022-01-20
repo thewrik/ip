@@ -1,7 +1,16 @@
 package tasks;
 
+import taskManagerExceptions.InvalidParameterException;
+
 public class ToDoTask extends Task{
-    public ToDoTask(String toDoTaskName) {
-        super(toDoTaskName, "T");
+    private ToDoTask(String taskName) {
+        super(taskName, "T");
     }
+    public static ToDoTask ToDoTaskBuilder(String taskName) throws InvalidParameterException {
+        if (taskName.length() == Commands.todo.toString().length()) {
+            throw new InvalidParameterException("A Todo Task must have a task name.\nPlease try again!");
+        }
+        return new ToDoTask(taskName.substring(Commands.todo.toString().length()+1).trim());
+    }
+
 }

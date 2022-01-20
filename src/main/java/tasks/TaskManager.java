@@ -20,35 +20,26 @@ public class TaskManager {
         taskName = taskName.trim();
 
         if (taskName.startsWith(Commands.todo.toString())) {
-            if (taskName.length() == Commands.todo.toString().length()) {
-                throw new InvalidParameterException("A Todo task must have a task name.\nPlease try again");
-            }
-            addedTask = new ToDoTask(taskName.substring(Commands.todo.toString().length() + 1));
+            addedTask = ToDoTask.ToDoTaskBuilder(taskName);
         } else if (taskName.startsWith(Commands.deadline.toString())){
-            if (taskName.length() == Commands.deadline.toString().length()) {
-                throw new InvalidParameterException("A Deadline task must have a task name.\nPlease try again");
-            }
-            addedTask = new DeadlineTask(taskName.substring(Commands.deadline.toString().length() + 1));
-        } else if (taskName.startsWith(Commands.event.toString())){
-            if (taskName.length() == Commands.event.toString().length()) {
-                throw new InvalidParameterException("An Event task must have a task name.\nPlease try again");
-            }
-            addedTask = new EventTask(taskName.substring(Commands.event.toString().length() + 1));
+            addedTask = DeadlineTask.DeadlineTaskBuilder(taskName);
+        } else if (taskName.startsWith(Commands.event.toString())) {
+            addedTask = EventTask.EventTaskBuilder(taskName);
         } else {
-            throw new InvalidCommandExcpetion("Could not recognise the command, please try again.");
+            throw new InvalidCommandExcpetion("Could not recognise the command, please try again!");
         }
+
         taskList.add(addedTask);
         taskCounter++;
 
-        String prompt = String.format("Great, have added the following task for you:\n%s\nNow you have %s.", addedTask, countTasks());
-        return prompt;
+        return String.format("Great, have added the following task for you:\n%s\nNow you have %s.", addedTask, countTasks());
     }
 
     private static String list() {
         int task_no = 1;
         StringBuilder prompt = new StringBuilder("");
 
-        prompt.append(String.format("You have %s in the list", countTasks()));
+        prompt.append(String.format("You have %s in the list\n", countTasks()));
 
         for (Task t:taskList) {
             prompt.append(String.format("%d. %s\n", task_no++, t.toString()));
@@ -59,18 +50,21 @@ public class TaskManager {
     private static String mark(int index) {
         Task targetTask = taskList.get(index - 1);
         targetTask.mark();
-        StringBuilder prompt = new StringBuilder("Well done! I have marked this task as done.\n");
-        prompt.append(targetTask.toString());
-        return prompt.toString().trim();
+        return ("Well done! I have marked this task as done.\n" + targetTask.toString()).trim();
     }
 
     private static String unmark(int index) {
         Task targetTask = taskList.get(index - 1);
         targetTask.unmark();
-        StringBuilder prompt = new StringBuilder("No worries, I have unmarked this task, good luck!\n");
-        prompt.append(targetTask.toString());
-        return prompt.toString().trim();
+        return ("No worries, I have unmarked this task, good luck!\n" + targetTask.toString()).trim();
     }
+
+    private static String delete(int index) {
+        Task deletedTask = taskList.remove(index - 1);
+        taskCounter--;
+        return String.format("Noted. I have removed the following task:\n%s\nYou now have %s",deletedTask.toString().trim(), countTasks());
+    }
+
 
     public static void process(String inputMessage) {
         if (inputMessage.equals(Commands.list.toString())) {
@@ -79,6 +73,8 @@ public class TaskManager {
             Style.printStylised(mark(Integer.parseInt(inputMessage.substring(Commands.mark.toString().length() + 1))));
         } else if (inputMessage.startsWith(Commands.unmark.toString())) {
             Style.printStylised(unmark(Integer.parseInt(inputMessage.substring(Commands.unmark.toString().length() + 1))));
+        } else if (inputMessage.startsWith(Commands.delete.toString())) {
+            Style.printStylised(delete(Integer.parseInt(inputMessage.substring(Commands.delete.toString().length() + 1))));
         } else {
             try {
                 Style.printStylised(add(inputMessage));

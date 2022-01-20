@@ -5,13 +5,19 @@ import taskManagerExceptions.InvalidParameterException;
 public class DeadlineTask extends Task{
     private final String deadline;
 
-    public DeadlineTask(String taskName) throws InvalidParameterException {
+    private DeadlineTask(String taskName, String deadline) {
         super(taskName, "D");
-        int lastIndexOfBackslash = taskName.lastIndexOf('\\');
-        if (lastIndexOfBackslash == -1) {
-            throw new InvalidParameterException("A Deadline task must have an associated deadline.\nPlease try again");
+        this.deadline = deadline;
+    }
+    public static DeadlineTask DeadlineTaskBuilder(String taskName) throws InvalidParameterException {
+        if (taskName.length() == Commands.deadline.toString().length()) {
+            throw new InvalidParameterException("A Deadline Task must have a task name.\nPlease try again!");
         }
-        this.deadline = taskName.substring(lastIndexOfBackslash + 3);
+        int lastIndexOfBackslash = taskName.lastIndexOf('/');
+        if (lastIndexOfBackslash == -1) {
+            throw new InvalidParameterException("A Deadline Task must have an associated deadline.\nPlease try again!");
+        }
+        return new DeadlineTask(taskName.substring(Commands.deadline.toString().length() + 1, lastIndexOfBackslash).trim(), taskName.substring(lastIndexOfBackslash + 4));
     }
 
     @Override

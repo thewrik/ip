@@ -5,11 +5,6 @@ public class Task {
     private Boolean isDone;
     private String taskType;
 
-    public Task(String taskName) {
-        this.taskName = taskName;
-        this.isDone = Boolean.FALSE;
-        this.taskType = " ";
-    }
     public Task(String taskName, String taskType) {
         this.taskName = taskName;
         this.isDone = Boolean.FALSE;
