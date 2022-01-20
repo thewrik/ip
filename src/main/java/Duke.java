@@ -1,27 +1,22 @@
 import java.util.Scanner;
 import style.Style;
+import tasks.Commands;
 import tasks.TaskManager;
 
 public class Duke {
     public static void main(String[] args) {
-//        String logo = " ____        _        \n"
-//                + "|  _ \\ _   _| | _____ \n"
-//                + "| | | | | | | |/ / _ \\\n"
-//                + "| |_| | |_| |   <  __/\n"
-//                + "|____/ \\__,_|_|\\_\\___|\n";
-//        System.out.println("Hello from\n" + logo);
 
         Scanner sc = new Scanner(System.in);
 
         String greetingMessage = "Hello! I am Morty, Rick's assistant.\nWhat can I do for you, today?";
         String inputMessage;
-        String farewellMessage = "Hope you had fun talking to me, and \nbye! Have a nice day ahead!";
+        String farewellMessage = "Hope you had fun talking to me, and bye!\nHave a nice day ahead!";
 
         Style.printStylised(greetingMessage);
 
         while(sc.hasNext()) {
             inputMessage = sc.nextLine();
-            if (inputMessage.equals("bye")) {
+            if (inputMessage.equals(Commands.bye.toString())) {
                 Style.printStylised(farewellMessage);
                 break;
             } else {

@@ -15,12 +15,12 @@ public class TaskManager {
 
     private static String add(String taskName) {
         Task addedTask;
-        if (taskName.startsWith("todo")) {
-            addedTask = new ToDoTask(taskName.substring("todo".length() + 1));
-        } else if (taskName.startsWith("deadline")){
-            addedTask = new DeadlineTask(taskName.substring("deadline".length() + 1));
-        } else if (taskName.startsWith("event")){
-            addedTask = new EventTask(taskName.substring("event".length() + 1));
+        if (taskName.startsWith(Commands.todo.toString())) {
+            addedTask = new ToDoTask(taskName.substring(Commands.todo.toString().length() + 1));
+        } else if (taskName.startsWith(Commands.deadline.toString())){
+            addedTask = new DeadlineTask(taskName.substring(Commands.deadline.toString().length() + 1));
+        } else if (taskName.startsWith(Commands.event.toString())){
+            addedTask = new EventTask(taskName.substring(Commands.event.toString().length() + 1));
         } else {
             addedTask = new Task(taskName);
         }
