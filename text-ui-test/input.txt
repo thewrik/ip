@@ -1,0 +1,14 @@
+todo borrow book
+deadline read book /by Jan 20
+event book club meeting /at Jan 22
+deadline return book Jan 25
+deadline
+deadline return book /by Jan 25
+list
+mark 1
+mark 2
+unmark 2
+list
+delete 3
+list
+bye

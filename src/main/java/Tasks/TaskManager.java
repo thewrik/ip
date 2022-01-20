@@ -1,8 +1,8 @@
-package tasks;
+package Tasks;
 
-import style.Style;
-import taskManagerExceptions.InvalidCommandExcpetion;
-import taskManagerExceptions.InvalidParameterException;
+import StyleAuxillaries.Style;
+import TaskManagerExceptions.InvalidCommandExcpetion;
+import TaskManagerExceptions.InvalidParameterException;
 
 import java.util.ArrayList;
 
@@ -67,7 +67,7 @@ public class TaskManager {
 
 
     public static void process(String inputMessage) {
-        if (inputMessage.equals(Commands.list.toString())) {
+        if (inputMessage.trim().equals(Commands.list.toString())) {
             Style.printStylised(list());
         } else if (inputMessage.startsWith(Commands.mark.toString())) {
             Style.printStylised(mark(Integer.parseInt(inputMessage.substring(Commands.mark.toString().length() + 1))));

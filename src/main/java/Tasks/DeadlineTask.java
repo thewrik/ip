@@ -1,6 +1,6 @@
-package tasks;
+package Tasks;
 
-import taskManagerExceptions.InvalidParameterException;
+import TaskManagerExceptions.InvalidParameterException;
 
 public class DeadlineTask extends Task{
     private final String deadline;

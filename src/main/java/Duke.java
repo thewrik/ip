@@ -1,7 +1,7 @@
 import java.util.Scanner;
-import style.Style;
-import tasks.Commands;
-import tasks.TaskManager;
+import StyleAuxillaries.Style;
+import Tasks.Commands;
+import Tasks.TaskManager;
 
 public class Duke {
     public static void main(String[] args) {
