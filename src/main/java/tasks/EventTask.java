@@ -1,12 +1,18 @@
 package tasks;
 
+import taskManagerExceptions.InvalidParameterException;
+
 public class EventTask extends Task{
 
     private final String eventTime;
 
-    public EventTask(String taskName) {
+    public EventTask(String taskName) throws InvalidParameterException {
         super(taskName, "E");
-        this.eventTime = taskName.substring(taskName.lastIndexOf('\\') + 4).trim();
+        int lastIndexOfBackslash = taskName.lastIndexOf('\\');
+        if (lastIndexOfBackslash == -1) {
+            throw new InvalidParameterException("An Event task must have an associated event time.\nPlease try again");
+        }
+        this.eventTime = taskName.substring(lastIndexOfBackslash + 4).trim();
     }
 
     @Override
