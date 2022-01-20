@@ -1,5 +1,7 @@
 import java.util.Scanner;
 import style.Style;
+import tasks.TaskManager;
+
 public class Duke {
     public static void main(String[] args) {
 //        String logo = " ____        _        \n"
@@ -14,6 +16,7 @@ public class Duke {
         String greetingMessage = "Hello! I am Morty, Rick's assistant.\nWhat can I do for you, today?";
         String inputMessage;
         String farewellMessage = "Hope you had fun talking to me, and \nbye! Have a nice day ahead!";
+
         Style.printStylised(greetingMessage);
 
         while(sc.hasNext()) {
@@ -22,7 +25,7 @@ public class Duke {
                 Style.printStylised(farewellMessage);
                 break;
             } else {
-                Style.printStylised(inputMessage);
+                TaskManager.process(inputMessage);
             }
         }
     }
