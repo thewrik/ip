@@ -6,17 +6,37 @@ import java.util.ArrayList;
 
 public class TaskManager {
     private static ArrayList<Task> taskList = new ArrayList<>();
+    private static int taskCounter = 0;
+
+    private static String countTasks() {
+        String pluralSuffix = taskCounter == 1 ? "" : "s";
+        return String.format("%s task%s", taskCounter, pluralSuffix);
+    }
 
     private static String add(String taskName) {
-        Task addedTask = new Task(taskName);
+        Task addedTask;
+        if (taskName.startsWith("todo")) {
+            addedTask = new ToDoTask(taskName.substring("todo".length() + 1));
+        } else if (taskName.startsWith("deadline")){
+            addedTask = new DeadlineTask(taskName.substring("deadline".length() + 1));
+        } else if (taskName.startsWith("event")){
+            addedTask = new EventTask(taskName.substring("event".length() + 1));
+        } else {
+            addedTask = new Task(taskName);
+        }
         taskList.add(addedTask);
-        String prompt = String.format("added: %s", taskName);
+        taskCounter++;
+
+        String prompt = String.format("Great, have added the following task for you:\n%s\nNow you have %s.", addedTask, countTasks());
         return prompt;
     }
 
     private static String list() {
         int task_no = 1;
         StringBuilder prompt = new StringBuilder("");
+
+        prompt.append(String.format("You have %s in the list", countTasks()));
+
         for (Task t:taskList) {
             prompt.append(String.format("%d. %s\n", task_no++, t.toString()));
         }
