@@ -2,12 +2,14 @@ package Tasks;
 
 import TaskManagerExceptions.InvalidParameterException;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class EventTask extends Task{
 
-    private final String eventTime;
+    private final LocalDate eventTime;
 
-    private EventTask(String taskName, String eventTime) {
+    private EventTask(String taskName, LocalDate eventTime) {
         super(taskName, "E");
         this.eventTime = eventTime;
     }
@@ -20,7 +22,11 @@ public class EventTask extends Task{
         if (lastIndexOfBackslash == -1) {
             throw new InvalidParameterException("An Event Task must have an associated event time.\nPlease try again!");
         }
-        return new EventTask(taskName.substring(Commands.event.toString().length() + 1, lastIndexOfBackslash).trim(), taskName.substring(lastIndexOfBackslash + 4));
+        return new EventTask(
+                taskName.substring(Commands.event.toString().length() + 1, lastIndexOfBackslash).trim(),
+                LocalDate.parse(
+                        taskName.substring(lastIndexOfBackslash + 4),
+                        DateTimeFormatter.ofPattern("dd-MM-yyyy")));
     }
 
 
