@@ -1,5 +1,6 @@
 package Tasks;
 
+import Storage.Storage;
 import StyleAuxillaries.Style;
 import TaskManagerExceptions.InvalidCommandExcpetion;
 import TaskManagerExceptions.InvalidParameterException;
@@ -65,19 +66,36 @@ public class TaskManager {
         return String.format("Noted. I have removed the following task:\n%s\nYou now have %s",deletedTask.toString().trim(), countTasks());
     }
 
+    private static String save() {
+        int task_no = 1;
+        StringBuilder currentListState = new StringBuilder("");
+
+        for (Task t:taskList) {
+            currentListState.append(String.format("%d. %s\n", task_no++, t.toString()));
+        }
+
+        return Storage.save(currentListState.toString());
+    }
+
 
     public static void process(String inputMessage) {
         if (inputMessage.trim().equals(Commands.list.toString())) {
             Style.printStylised(list());
         } else if (inputMessage.startsWith(Commands.mark.toString())) {
             Style.printStylised(mark(Integer.parseInt(inputMessage.substring(Commands.mark.toString().length() + 1))));
+            save();
         } else if (inputMessage.startsWith(Commands.unmark.toString())) {
             Style.printStylised(unmark(Integer.parseInt(inputMessage.substring(Commands.unmark.toString().length() + 1))));
+            save();
         } else if (inputMessage.startsWith(Commands.delete.toString())) {
             Style.printStylised(delete(Integer.parseInt(inputMessage.substring(Commands.delete.toString().length() + 1))));
+            save();
+        } else if (inputMessage.startsWith(Commands.save.toString())) {
+            Style.printStylised(save());
         } else {
             try {
                 Style.printStylised(add(inputMessage));
+                save();
             } catch (Exception e) {
                 Style.printStylised(e.getMessage());
             }
