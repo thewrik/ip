@@ -2,14 +2,10 @@ package Tasks;
 
 import TaskManagerExceptions.InvalidParameterException;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
-
 public class DeadlineTask extends Task{
-    private final LocalDate deadline;
+    private final String deadline;
 
-    private DeadlineTask(String taskName, LocalDate deadline) {
+    private DeadlineTask(String taskName, String deadline) {
         super(taskName, "D");
         this.deadline = deadline;
     }
@@ -21,12 +17,7 @@ public class DeadlineTask extends Task{
         if (lastIndexOfBackslash == -1) {
             throw new InvalidParameterException("A Deadline Task must have an associated deadline.\nPlease try again!");
         }
-        System.out.println(taskName.substring(lastIndexOfBackslash + 4));
-        return new DeadlineTask(
-                taskName.substring(Commands.deadline.toString().length() + 1, lastIndexOfBackslash).trim(),
-                LocalDate.parse(
-                        taskName.substring(lastIndexOfBackslash + 4),
-                        DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+        return new DeadlineTask(taskName.substring(Commands.deadline.toString().length() + 1, lastIndexOfBackslash).trim(), taskName.substring(lastIndexOfBackslash + 4));
     }
 
     @Override
