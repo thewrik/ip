@@ -2,6 +2,7 @@ package Tasks;
 
 import TaskManagerExceptions.InvalidParameterException;
 
+
 public class EventTask extends Task{
 
     private final String eventTime;
