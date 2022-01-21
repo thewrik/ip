@@ -8,5 +8,6 @@ public enum Commands {
     mark,
     unmark,
     bye,
-    delete
+    delete,
+    save,
 }
