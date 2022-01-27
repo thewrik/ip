@@ -6,16 +6,14 @@ import java.util.ArrayList;
 
 public class TaskList {
     private static final ArrayList<Task> taskList = new ArrayList<>();
-    private static int taskCounter = 0;
 
     static String countTasks() {
-        String pluralSuffix = taskCounter == 1 ? "" : "s";
-        return String.format("%s task%s", taskCounter, pluralSuffix);
+        String pluralSuffix = taskList.size()== 1 ? "" : "s";
+        return String.format("%s task%s", taskList.size(), pluralSuffix);
     }
 
     static String add(Task task) {
         taskList.add(task);
-        taskCounter++;
 
         return String.format("Great, have added the following task for you:\n%s\nNow you have %s.", task, countTasks());
     }
@@ -49,8 +47,11 @@ public class TaskList {
 
     static Task delete(int index) {
         Task deletedTask = taskList.remove(index - 1);
-        taskCounter--;
         return deletedTask;
+    }
+
+    static void reinitialise() {
+        taskList.clear();
     }
 }
 

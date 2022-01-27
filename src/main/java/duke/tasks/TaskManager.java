@@ -46,6 +46,11 @@ public class TaskManager {
     }
 
     public static void save() {
+
         TaskList.save();
+    }
+
+    public static void reinitialise() {
+        TaskList.reinitialise();
     }
 }

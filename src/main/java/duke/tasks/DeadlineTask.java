@@ -13,6 +13,7 @@ public class DeadlineTask extends Task{
         super(taskName, "D");
         this.deadline = deadline;
     }
+
     public static DeadlineTask DeadlineTaskBuilder(String taskName) throws InvalidParameterException {
         if (taskName.length() == Commands.deadline.toString().length()) {
             throw new InvalidParameterException("A Deadline Task must have a task name.\nPlease try again!");
@@ -21,7 +22,7 @@ public class DeadlineTask extends Task{
         if (lastIndexOfBackslash == -1) {
             throw new InvalidParameterException("A Deadline Task must have an associated deadline.\nPlease try again!");
         }
-        System.out.println(taskName.substring(lastIndexOfBackslash + 4));
+
         return new DeadlineTask(
                 taskName.substring(Commands.deadline.toString().length() + 1, lastIndexOfBackslash).trim(),
                 LocalDate.parse(
