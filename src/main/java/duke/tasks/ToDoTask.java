@@ -1,6 +1,7 @@
-package Tasks;
+package duke.tasks;
 
-import TaskManagerExceptions.InvalidParameterException;
+import duke.commands.Commands;
+import duke.exceptions.InvalidParameterException;
 
 public class ToDoTask extends Task{
     private ToDoTask(String taskName) {

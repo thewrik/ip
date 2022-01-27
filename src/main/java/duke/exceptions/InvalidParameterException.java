@@ -1,4 +1,4 @@
-package TaskManagerExceptions;
+package duke.exceptions;
 
 public class InvalidParameterException extends Exception{
     public InvalidParameterException(String errorMessage) {

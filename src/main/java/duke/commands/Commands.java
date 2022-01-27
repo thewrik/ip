@@ -1,4 +1,4 @@
-package Tasks;
+package duke.commands;
 
 public enum Commands {
     todo,
@@ -9,5 +9,4 @@ public enum Commands {
     unmark,
     bye,
     delete,
-    save,
 }

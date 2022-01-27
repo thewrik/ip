@@ -1,4 +1,4 @@
-package Storage;
+package duke.storage;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -15,7 +15,7 @@ public class Storage {
         try {
             Path storageFolderPath = Paths.get("data");
             if (Files.notExists(storageFolderPath)) Files.createDirectory(storageFolderPath);
-            Path storageFilePath = storageFolderPath.resolve(Paths.get("tasks.txt"));
+            Path storageFilePath = storageFolderPath.resolve(Paths.get("duke.tasks.txt"));
             if (Files.notExists(storageFilePath)) Files.createFile(storageFilePath);
             Storage.storagePath = storageFilePath;
             Storage.storageFile = Storage.storagePath.toFile();
@@ -34,9 +34,7 @@ public class Storage {
         }
     }
 
-    public static String save(String message) {
+    public static void save(String message) {
         write(message);
-
-        return String.format("Task List auto-saved to %s", storageFile.getAbsolutePath());
     }
 }
