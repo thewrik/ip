@@ -21,6 +21,8 @@ public class Parser {
         } else if (inputMessage.startsWith(Commands.delete.toString())) {
             Display.printStylised(TaskManager.delete(Integer.parseInt(inputMessage.substring(Commands.delete.toString().length() + 1))));
             TaskManager.save();
+        } else if (inputMessage.startsWith(Commands.find.toString())) {
+            Display.printStylised(TaskManager.find(inputMessage.substring(Commands.find.toString().length() + 1)));
         } else {
             try {
                 Display.printStylised(TaskManager.generateAndAdd(inputMessage));

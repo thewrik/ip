@@ -3,6 +3,9 @@ package duke.tasks;
 import duke.storage.Storage;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class TaskList {
     private static final ArrayList<Task> taskList = new ArrayList<>();
@@ -52,6 +55,25 @@ public class TaskList {
 
     static void reinitialise() {
         taskList.clear();
+    }
+
+    public static String find(String taskKeyword) {
+        List<Task> filteredTasks = taskList.stream()
+                .filter(
+                        task -> Arrays.stream(task
+                                .toString()
+                                .toLowerCase()
+                                .split(" "))
+                                .anyMatch(word -> word.equals(taskKeyword)))
+                .collect(Collectors.toList());
+
+        StringBuilder foundStrings = new StringBuilder("Here are the tasks found with the given keyword.\n");
+
+        int filteredTaskCounter = 1;
+        for (Task filteredTask :filteredTasks) {
+            foundStrings.append(String.format("%s. %s\n", filteredTaskCounter++, filteredTask));
+        }
+        return foundStrings.toString().trim();
     }
 }
 

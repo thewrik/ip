@@ -1,2 +1,4 @@
-1. [T][X] borrow book
-2. [D][ ] abx (by: Nov 11, 2022)
+1. [T][ ] abc
+2. [T][ ] abc def
+3. [T][ ] abcd
+4. [T][ ] cx

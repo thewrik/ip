@@ -53,4 +53,8 @@ public class TaskManager {
     public static void reinitialise() {
         TaskList.reinitialise();
     }
+
+    public static String find(String taskKeyword) {
+        return TaskList.find(taskKeyword);
+    }
 }

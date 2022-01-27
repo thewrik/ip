@@ -9,4 +9,5 @@ public enum Commands {
     unmark,
     bye,
     delete,
+    find,
 }
