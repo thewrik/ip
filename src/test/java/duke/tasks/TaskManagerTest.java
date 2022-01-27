@@ -3,13 +3,14 @@ package duke.tasks;
 import duke.exceptions.InvalidCommandExcpetion;
 import duke.exceptions.InvalidParameterException;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TaskManagerTest {
-    
+
     @Test
-    private static void generateAndAddTest(){
+    private static void generateAndAddTest() {
         TaskManager.reinitialise();
         String addMessage = "Great, have added the following task for you:\n%s\nNow you have %s.";
         try {
@@ -30,8 +31,8 @@ public class TaskManagerTest {
         TaskManager.reinitialise();
         String markedMessage = "Well done! I have marked this task as done.\n%s";
         generateAndAddTest();
-        assertEquals(TaskManager.mark(2),String.format(markedMessage,"[D][X] read book (by: Apr 02, 2022)"));
-        assertEquals(TaskManager.mark(4),String.format(markedMessage,"[D][X] return book (by: May 02, 2022)"));
+        assertEquals(TaskManager.mark(2), String.format(markedMessage, "[D][X] read book (by: Apr 02, 2022)"));
+        assertEquals(TaskManager.mark(4), String.format(markedMessage, "[D][X] return book (by: May 02, 2022)"));
     }
 
     @Test
@@ -40,8 +41,8 @@ public class TaskManagerTest {
         String unmarkedMessage = "No worries, I have unmarked this task, good luck!\n%s";
         generateAndAddTest();
         markTest();
-        assertEquals(TaskManager.unmark(2),String.format(unmarkedMessage,"[D][ ] read book (by: Apr 02, 2022)"));
-        assertEquals(TaskManager.unmark(4),String.format(unmarkedMessage,"[D][ ] return book (by: May 02, 2022)"));
+        assertEquals(TaskManager.unmark(2), String.format(unmarkedMessage, "[D][ ] read book (by: Apr 02, 2022)"));
+        assertEquals(TaskManager.unmark(4), String.format(unmarkedMessage, "[D][ ] return book (by: May 02, 2022)"));
     }
 
     @Test

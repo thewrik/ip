@@ -11,7 +11,7 @@ public class TaskList {
     private static final ArrayList<Task> taskList = new ArrayList<>();
 
     static String countTasks() {
-        String pluralSuffix = taskList.size()== 1 ? "" : "s";
+        String pluralSuffix = taskList.size() == 1 ? "" : "s";
         return String.format("%s task%s", taskList.size(), pluralSuffix);
     }
 
@@ -31,7 +31,7 @@ public class TaskList {
 
         prompt.append(String.format("You have %s in the list\n", countTasks()));
 
-        for (Task t:taskList) {
+        for (Task t : taskList) {
             prompt.append(String.format("%d. %s\n", task_no++, t.toString()));
         }
         return prompt.toString().trim();
@@ -41,7 +41,7 @@ public class TaskList {
         int task_no = 1;
         StringBuilder currentListState = new StringBuilder();
 
-        for (Task t:taskList) {
+        for (Task t : taskList) {
             currentListState.append(String.format("%d. %s\n", task_no++, t.toString()));
         }
 

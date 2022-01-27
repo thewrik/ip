@@ -35,7 +35,7 @@ public class Parser {
 
     public static void parseInput() {
         String inputMessage;
-        while(sc.hasNext()) {
+        while (sc.hasNext()) {
             inputMessage = sc.nextLine();
             if (inputMessage.equals(Commands.bye.toString())) {
                 Display.exit();
