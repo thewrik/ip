@@ -3,15 +3,15 @@ package duke.storage;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import  java.nio.file.Files;
 
 public class Storage {
     private static Path storagePath;
     private static File storageFile;
 
-    public static void  initialise() {
+    public static void initialise() {
         try {
             Path storageFolderPath = Paths.get("data");
             if (Files.notExists(storageFolderPath)) Files.createDirectory(storageFolderPath);

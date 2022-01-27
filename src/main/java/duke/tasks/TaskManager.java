@@ -13,7 +13,7 @@ public class TaskManager {
 
         if (taskName.startsWith(Commands.todo.toString())) {
             addedTask = ToDoTask.ToDoTaskBuilder(taskName);
-        } else if (taskName.startsWith(Commands.deadline.toString())){
+        } else if (taskName.startsWith(Commands.deadline.toString())) {
             addedTask = DeadlineTask.DeadlineTaskBuilder(taskName);
         } else if (taskName.startsWith(Commands.event.toString())) {
             addedTask = EventTask.EventTaskBuilder(taskName);
@@ -42,7 +42,7 @@ public class TaskManager {
 
     public static String delete(int index) {
         Task deletedTask = TaskList.delete(index);
-        return String.format("Noted. I have removed the following task:\n%s\nYou now have %s",deletedTask.toString().trim(), TaskList.countTasks());
+        return String.format("Noted. I have removed the following task:\n%s\nYou now have %s", deletedTask.toString().trim(), TaskList.countTasks());
     }
 
     public static void save() {

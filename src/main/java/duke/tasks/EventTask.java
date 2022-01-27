@@ -6,7 +6,7 @@ import duke.exceptions.InvalidParameterException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class EventTask extends Task{
+public class EventTask extends Task {
 
     private final LocalDate eventTime;
 
@@ -24,15 +24,15 @@ public class EventTask extends Task{
             throw new InvalidParameterException("An Event Task must have an associated event time.\nPlease try again!");
         }
         return new EventTask(
-                taskName.substring(Commands.event.toString().length() + 1, lastIndexOfBackslash).trim(),
-                LocalDate.parse(
-                        taskName.substring(lastIndexOfBackslash + 4),
-                        DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+            taskName.substring(Commands.event.toString().length() + 1, lastIndexOfBackslash).trim(),
+            LocalDate.parse(
+                taskName.substring(lastIndexOfBackslash + 4),
+                DateTimeFormatter.ofPattern("dd-MM-yyyy")));
     }
 
 
     @Override
-    public String toString(){
+    public String toString() {
         return String.format("%s (at: %s)", super.toString(), eventTime.format(DateTimeFormatter.ofPattern("MMM dd, yyyy")));
     }
 

@@ -6,7 +6,7 @@ import duke.exceptions.InvalidParameterException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class DeadlineTask extends Task{
+public class DeadlineTask extends Task {
     private final LocalDate deadline;
 
     private DeadlineTask(String taskName, LocalDate deadline) {
