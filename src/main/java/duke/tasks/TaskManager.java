@@ -7,6 +7,12 @@ import duke.exceptions.InvalidParameterException;
 
 public class TaskManager {
 
+    /**
+     * @param taskName
+     * @return
+     * @throws InvalidCommandExcpetion
+     * @throws InvalidParameterException
+     */
     public static String generateAndAdd(String taskName) throws InvalidCommandExcpetion, InvalidParameterException {
         Task addedTask;
         taskName = taskName.trim();
@@ -23,6 +29,7 @@ public class TaskManager {
 
         return TaskList.add(addedTask);
     }
+
 
     public static String list() {
         return TaskList.list();
@@ -49,7 +56,7 @@ public class TaskManager {
 
         TaskList.save();
     }
-
+    
     public static void reinitialise() {
         TaskList.reinitialise();
     }
