@@ -57,6 +57,12 @@ public class TaskList {
         taskList.clear();
     }
 
+    /**
+     * This is a method that finds all the tasks in the task list which contain the keyword
+     * in the task name.
+     * @param taskKeyword  The keyword being searched for.
+     * @return A string containing the tasks found.
+     */
     public static String find(String taskKeyword) {
         List<Task> filteredTasks = taskList.stream()
                 .filter(
