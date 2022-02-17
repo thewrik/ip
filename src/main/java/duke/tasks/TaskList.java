@@ -87,7 +87,7 @@ public class TaskList {
             .filter(task -> task.toString().toLowerCase().contains(taskKeyword.toLowerCase()))
             .collect(Collectors.toList());
 
-        StringBuilder foundStrings = new StringBuilder("Here are the tasks found with the given keyword.\n");
+        StringBuilder foundStrings = new StringBuilder("Here are the tasks found after Better Search with the given keyword.\n");
 
         int filteredTaskCounter = 1;
         for (Task filteredTask :filteredTasks) {
@@ -96,4 +96,3 @@ public class TaskList {
         return foundStrings.toString().trim();
     }
 }
-
