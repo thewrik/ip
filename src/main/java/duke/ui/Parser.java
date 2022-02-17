@@ -23,6 +23,8 @@ public class Parser {
             TaskManager.save();
         } else if (inputMessage.startsWith(Commands.find.toString())) {
             Display.printStylised(TaskManager.find(inputMessage.substring(Commands.find.toString().length() + 1)));
+        }  else if (inputMessage.startsWith(Commands.findBetter.toString())) {
+            Display.printStylised(TaskManager.find(inputMessage.substring(Commands.findBetter.toString().length() + 1)));
         } else {
             try {
                 Display.printStylised(TaskManager.generateAndAdd(inputMessage));
