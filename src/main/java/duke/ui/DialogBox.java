@@ -11,7 +11,6 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
 /**
- * An example of a custom control using FXML.
  * This control represents a dialog box consisting of an ImageView to represent the speaker's face and a label
  * containing text from the speaker.
  */
@@ -50,10 +49,26 @@ public class DialogBox extends HBox {
         this.getChildren().setAll(tmp);
     }
 
+    /**
+     * This generates a green dialog box with the relevant parameters displayed, pertaining to the User.
+     *
+     * @param l Text to be displayed in the dialog box.
+     * @param iv The image assigned to the user's profile.
+     *
+     * @return The Dialogue Box with the above specifications.
+     */
     public static DialogBox getUserDialog(Label l, ImageView iv) {
         return new DialogBox(l, iv, Color.GREEN);
     }
 
+    /**
+     * This generates a blue dialog box with the relevant parameters displayed, pertaining to Duke.
+     *
+     * @param l Text to be displayed in the dialog box.
+     * @param iv The image assigned to Duke's profile (i.e. Morty).
+     *
+     * @return The Dialogue Box with the above specifications.
+     */
     public static DialogBox getDukeDialog(Label l, ImageView iv) {
         var db = new DialogBox(l, iv, Color.BLUE);
         db.flip();

@@ -10,6 +10,11 @@ import javafx.application.Application;
  */
 
 public class Duke {
+
+    /**
+     * Entry point to the program, triggers the beginning of processing.
+     * @param args
+     */
     public static void main(String[] args) {
         Storage.initialise();
         Application.launch(Display.class, args);

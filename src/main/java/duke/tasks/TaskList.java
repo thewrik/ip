@@ -10,21 +10,44 @@ import java.util.stream.Collectors;
 public class TaskList {
     private static final ArrayList<Task> taskList = new ArrayList<>();
 
+    /**
+     * Gets the number of tasks stored in the Task List.
+     *
+     * @return the size of the task list, i.e. the number of tasks stored in the Task List.
+     */
     static String countTasks() {
         String pluralSuffix = taskList.size() == 1 ? "" : "s";
         return String.format("%s task%s", taskList.size(), pluralSuffix);
     }
 
+    /**
+     * Adds a Task object to the TaskList.
+     *
+     * @param task The task to be added to the list.
+     *
+     * @return a message acknowledging the addition of the task, including the task details.
+     */
     static String add(Task task) {
         taskList.add(task);
 
         return String.format("Great, have added the following task for you:\n%s\nNow you have %s.", task, countTasks());
     }
 
+
+    /**
+     * Fetches a task by index. (1-indexed list).
+     *
+     * @param index The integer passed to get the task at that index.
+     *
+     * @return the task at the given index.
+     */
     static Task get(int index) {
         return taskList.get(index - 1);
     }
 
+    /**
+     *  Returns a string representation of the list of tasks.
+     */
     static String list() {
         int task_no = 1;
         StringBuilder prompt = new StringBuilder();
@@ -37,6 +60,9 @@ public class TaskList {
         return prompt.toString().trim();
     }
 
+    /**
+     * Saves the current state of the list using the Storage component.
+     */
     static void save() {
         int task_no = 1;
         StringBuilder currentListState = new StringBuilder();
@@ -48,6 +74,12 @@ public class TaskList {
         Storage.save(currentListState.toString());
     }
 
+    /**
+     * Deletes the Task at a certain index (1-indexed list).
+     *
+     * @param index The integer passed to get the task at that index.
+     * @return A message acknowledging the deletion with the deleted task included.
+     */
     static Task delete(int index) {
         Task deletedTask = taskList.remove(index - 1);
         return deletedTask;
@@ -59,7 +91,8 @@ public class TaskList {
 
     /**
      * This is a method that finds all the tasks in the task list which contain the keyword
-     * in the task name.
+     * in the task name as a constituent word.
+     *
      * @param taskKeyword  The keyword being searched for.
      * @return A string containing the tasks found.
      */
@@ -82,6 +115,13 @@ public class TaskList {
         return foundStrings.toString().trim();
     }
 
+    /**
+     * This is a method that finds all the tasks in the task list which contain the keyword
+     * in the task name as a constituent word, or as a substring of a constituent word.
+     *
+     * @param taskKeyword  The keyword being searched for.
+     * @return A string containing the tasks found.
+     */
     public static String findBetter(String taskKeyword) {
         List<Task> filteredTasks = taskList.stream()
             .filter(task -> task.toString().toLowerCase().contains(taskKeyword.toLowerCase()))

@@ -8,7 +8,15 @@ public class ToDoTask extends Task {
         super(taskName, "T");
     }
 
-    public static ToDoTask ToDoTaskBuilder(String taskName) throws InvalidParameterException {
+    /**
+     * Factory method to generate TODO task.
+     *
+     * @param taskName The name of the task to be created.
+     *
+     * @return the ToDoTask created.
+     * @throws InvalidParameterException If no name is passed.
+     */
+    public static ToDoTask buildTodoTask(String taskName) throws InvalidParameterException {
         if (taskName.length() == Commands.todo.toString().length()) {
             throw new InvalidParameterException("A Todo Task must have a task name.\nPlease try again!");
         }

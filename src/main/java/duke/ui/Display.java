@@ -27,7 +27,6 @@ public class Display extends Application {
         BackgroundSize.DEFAULT));
 
     /**
-     * Iteration 1:
      * Creates a label with the specified text and adds it to the dialog container.
      * @param text String containing text to add
      * @return a label with the specified text that has word wrap enabled.
@@ -54,7 +53,11 @@ public class Display extends Application {
         userInput.clear();
     }
 
-
+    /**
+     * Generates the UI of the application.
+     *
+     * @param stage The platform upon which UI elements are placed.
+     */
     @Override
     public void start(Stage stage) {
         //Step 1. Setting up required components

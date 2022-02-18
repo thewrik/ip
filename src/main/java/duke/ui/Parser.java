@@ -9,6 +9,13 @@ public class Parser {
     static final String greetingMessage = "Hello! I am Morty, Rick's assistant.\nI keep track of your tasks, so you don't have to. What's up?";
     static final String farewellMessage = "Hope you had fun talking to me, and bye!\nHave a nice day ahead!";
 
+    /**
+     * Allocates the message appropriately to relevant classes for handling.
+     *
+     * @param inputMessage The message passed as input to the application.
+     *
+     * @return The response generated as a consequence of the action undertaken.
+     */
     public static String process(String inputMessage) {
         if (inputMessage.trim().equals(Commands.list.toString())) {
             return TaskManager.list();

@@ -11,6 +11,9 @@ public class Storage {
     private static Path storagePath;
     private static File storageFile;
 
+    /**
+     * Initialises the file location where the saved state of the task manager is to be stored.
+     */
     public static void initialise() {
         try {
             Path storageFolderPath = Paths.get("data");
@@ -24,7 +27,12 @@ public class Storage {
         }
     }
 
-    private static void write(String message) {
+    /**
+     * Writes the message passed as a parameter to the file the class was initialised with.
+     *
+     * @param message The message content to be saved.
+     */
+    public static void save(String message) {
         try {
             FileWriter fileWriter = new FileWriter(storageFile.getAbsolutePath());
             fileWriter.write(message);
@@ -32,9 +40,5 @@ public class Storage {
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
-    }
-
-    public static void save(String message) {
-        write(message);
     }
 }
