@@ -1,7 +1,7 @@
 package duke.tasks;
 
 import duke.commands.Commands;
-import duke.exceptions.InvalidCommandExcpetion;
+import duke.exceptions.invalidCommandException;
 import duke.exceptions.InvalidParameterException;
 
 
@@ -10,21 +10,26 @@ public class TaskManager {
     /**
      * @param taskName
      * @return
-     * @throws InvalidCommandExcpetion
+     * @throws invalidCommandException
      * @throws InvalidParameterException
      */
-    public static String generateAndAdd(String taskName) throws InvalidCommandExcpetion, InvalidParameterException {
+    public static String generateAndAdd(String taskName) throws invalidCommandException, InvalidParameterException {
         Task addedTask;
         taskName = taskName.trim();
 
         if (taskName.startsWith(Commands.todo.toString())) {
             addedTask = ToDoTask.ToDoTaskBuilder(taskName);
+            assert(addedTask.toString().startsWith("[T]"));
         } else if (taskName.startsWith(Commands.deadline.toString())) {
             addedTask = DeadlineTask.DeadlineTaskBuilder(taskName);
+            assert(addedTask.toString().startsWith("[D]"));
+            assert(addedTask.toString().contains("(by:"));
         } else if (taskName.startsWith(Commands.event.toString())) {
             addedTask = EventTask.EventTaskBuilder(taskName);
+            assert(addedTask.toString().startsWith("[E]"));
+            assert(addedTask.toString().contains("(at:"));
         } else {
-            throw new InvalidCommandExcpetion("Could not recognise the command, please try again!");
+            throw new invalidCommandException("Could not recognise the command, please try again!");
         }
 
         return TaskList.add(addedTask);
@@ -38,12 +43,14 @@ public class TaskManager {
     public static String mark(int index) {
         Task targetTask = TaskList.get(index);
         targetTask.mark();
+        assert(targetTask.toString().startsWith("[X]", 3));
         return ("Well done! I have marked this task as done.\n" + targetTask.toString()).trim();
     }
 
     public static String unmark(int index) {
         Task targetTask = TaskList.get(index);
         targetTask.unmark();
+        assert(targetTask.toString().startsWith("[ ]", 3));
         return ("No worries, I have unmarked this task, good luck!\n" + targetTask.toString()).trim();
     }
 
