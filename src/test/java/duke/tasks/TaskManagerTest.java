@@ -1,6 +1,6 @@
 package duke.tasks;
 
-import duke.exceptions.InvalidCommandExcpetion;
+import duke.exceptions.InvalidCommandException;
 import duke.exceptions.InvalidParameterException;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +18,7 @@ public class TaskManagerTest {
             assertEquals(TaskManager.generateAndAdd("deadline read book /by 02-04-2022"), String.format(addMessage, "[D][ ] read book (by: Apr 02, 2022)", "2 tasks"));
             assertEquals(TaskManager.generateAndAdd("event book club meeting /at 02-04-2022"), String.format(addMessage, "[E][ ] book club meeting (at: Apr 02, 2022)", "3 tasks"));
             assertThrows(InvalidParameterException.class, () -> TaskManager.generateAndAdd("deadline return book Jan 25"));
-            assertThrows(InvalidCommandExcpetion.class, () -> TaskManager.generateAndAdd("saved"));
+            assertThrows(InvalidCommandException.class, () -> TaskManager.generateAndAdd("saved"));
             assertThrows(InvalidParameterException.class, () -> TaskManager.generateAndAdd("deadline"));
             assertEquals(TaskManager.generateAndAdd("deadline return book /by 02-05-2022"), String.format(addMessage, "[D][ ] return book (by: May 02, 2022)", "4 tasks"));
         } catch (Exception e) {
