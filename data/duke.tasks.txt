@@ -1,1 +1,2 @@
-1. [E][ ] try (at: May, 22, 2000)
+1. [T][X] borrow book
+2. [D][ ] read book (by: Feb 20, 2022)

@@ -2,11 +2,10 @@ package duke.ui;
 
 import duke.commands.Commands;
 import duke.tasks.TaskManager;
-import java.util.Scanner;
 
 public class Parser {
 
-    static final Scanner sc = new Scanner(System.in);
+
     static final String greetingMessage = "Hello! I am Morty, Rick's assistant.\nI keep track of your tasks, so you don't have to. What's up?";
     static final String farewellMessage = "Hope you had fun talking to me, and bye!\nHave a nice day ahead!";
 
