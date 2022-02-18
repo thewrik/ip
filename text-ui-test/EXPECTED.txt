@@ -50,7 +50,7 @@ No worries, I have unmarked this task, good luck!
 [D][ ] read book (by: Jan 20)
 ----------------------------------------------
 ----------------------------------------------
-You have 4 duke.tasks in the list
+You have 4 tasks in the list
 1. [T][X] borrow book
 2. [D][ ] read book (by: Jan 20)
 3. [E][ ] book club meeting (at: Jan 22)
@@ -59,7 +59,7 @@ You have 4 duke.tasks in the list
 ----------------------------------------------
 Noted. I have removed the following task:
 [E][ ] book club meeting (at: Jan 22)
-You now have 3 duke.tasks
+You now have 3 tasks
 ----------------------------------------------
 ----------------------------------------------
 You have 3 duke.tasks in the list
