@@ -1,8 +1,8 @@
 # User Guide: Morty - Task Manager
 
-This is a personal assistant by the name Morty, inspired by and adapted after the eponymous sci-fi character from the show Rick and Morty, who stores, and manages tasks for you. While the Rick and Morty theme plays well in familiarising the user, Morty has none of the memory flaws of their namesake ( :wink: ).
+This is a personal assistant by the name Morty, inspired by and adapted after the eponymous sci-fi character from the show Rick and Morty, who stores, and manages tasks for you. While the Rick and Morty theme plays well in familiarising the user, Morty has none of the memory flaws of their namesake!
 
-![Ui](https://www.thewrik.github.io/ip/Ui.png)
+![Ui](https://thewrik.github.io/ip/Ui.png)
 
 ## Prerequisites
 This program uses Java11. [Download java](https://java.com/en/download/help/download_options.html) to proceed if your computer does not have it installed. 
