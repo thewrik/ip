@@ -33,7 +33,7 @@ without **valid dates** checked
 
 ## Usage
 
-###`list` - Display all tasks
+### `list` - Display all tasks
 
 Generates a list of all tasks that exist.
 
