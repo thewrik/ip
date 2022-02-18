@@ -64,4 +64,9 @@ public class TaskManager {
     public static String find(String taskKeyword) {
         return TaskList.find(taskKeyword);
     }
+
+    public static String findBetter(String taskKeyword) {
+        return TaskList.findBetter(taskKeyword);
+    }
+
 }

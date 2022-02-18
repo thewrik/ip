@@ -10,4 +10,5 @@ public enum Commands {
     bye,
     delete,
     find,
+    findBetter,
 }

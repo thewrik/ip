@@ -57,6 +57,12 @@ public class TaskList {
         taskList.clear();
     }
 
+    /**
+     * This is a method that finds all the tasks in the task list which contain the keyword
+     * in the task name.
+     * @param taskKeyword  The keyword being searched for.
+     * @return A string containing the tasks found.
+     */
     public static String find(String taskKeyword) {
         List<Task> filteredTasks = taskList.stream()
                 .filter(
@@ -64,7 +70,7 @@ public class TaskList {
                                 .toString()
                                 .toLowerCase()
                                 .split(" "))
-                                .anyMatch(word -> word.equals(taskKeyword)))
+                                .anyMatch(word -> word.equals(taskKeyword.toLowerCase())))
                 .collect(Collectors.toList());
 
         StringBuilder foundStrings = new StringBuilder("Here are the tasks found with the given keyword.\n");
@@ -75,5 +81,18 @@ public class TaskList {
         }
         return foundStrings.toString().trim();
     }
-}
 
+    public static String findBetter(String taskKeyword) {
+        List<Task> filteredTasks = taskList.stream()
+            .filter(task -> task.toString().toLowerCase().contains(taskKeyword.toLowerCase()))
+            .collect(Collectors.toList());
+
+        StringBuilder foundStrings = new StringBuilder("Here are the tasks found after Better Search with the given keyword.\n");
+
+        int filteredTaskCounter = 1;
+        for (Task filteredTask :filteredTasks) {
+            foundStrings.append(String.format("%s. %s\n", filteredTaskCounter++, filteredTask));
+        }
+        return foundStrings.toString().trim();
+    }
+}
