@@ -31,10 +31,10 @@ public class Parser {
             String returnableResponseOfAction =TaskManager.delete(Integer.parseInt(inputMessage.substring(Commands.delete.toString().length() + 1)));
             TaskManager.save();
             return returnableResponseOfAction;
-        } else if (inputMessage.startsWith(Commands.find.toString())) {
-            return  TaskManager.find(inputMessage.substring(Commands.find.toString().length() + 1));
         }  else if (inputMessage.startsWith(Commands.findBetter.toString())) {
             return TaskManager.findBetter(inputMessage.substring(Commands.findBetter.toString().length() + 1));
+        } else if (inputMessage.startsWith(Commands.find.toString() + " ")) {
+            return  TaskManager.find(inputMessage.substring(Commands.find.toString().length() + 1));
         } else if (inputMessage.equals(Commands.bye.toString())) {
             return farewellMessage;
         } else {
