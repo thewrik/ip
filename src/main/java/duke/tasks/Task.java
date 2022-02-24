@@ -4,6 +4,7 @@ public class Task {
     private final String taskName;
     private Boolean isDone;
     private final String taskType;
+    private static final Task emptyTask = new Task("", "");
 
     /**
      * Constructor for a Task
@@ -15,6 +16,22 @@ public class Task {
         this.taskName = taskName;
         this.isDone = Boolean.FALSE;
         this.taskType = taskType;
+    }
+
+    Task(String taskName, String taskType, Boolean isDone) {
+        this.taskName = taskName;
+        this.isDone = isDone;
+        this.taskType = taskType;
+    }
+
+    public static Task generateFromString(String savedTask) {
+        switch (savedTask.charAt(4)) {
+
+            case 'T': return ToDoTask.generateFromString(savedTask);
+            case 'D': return DeadlineTask.generateFromString(savedTask);
+            case 'E': return EventTask.generateFromString(savedTask);
+            default:  System.out.print(savedTask.charAt(1)); return emptyTask;
+        }
     }
 
     /**

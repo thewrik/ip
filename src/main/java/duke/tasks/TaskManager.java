@@ -4,6 +4,8 @@ import duke.commands.Commands;
 import duke.exceptions.InvalidCommandException;
 import duke.exceptions.InvalidParameterException;
 
+import java.util.List;
+
 
 public class TaskManager {
 
@@ -25,11 +27,11 @@ public class TaskManager {
             addedTask = ToDoTask.buildTodoTask(taskName);
             assert(addedTask.toString().startsWith("[T]"));
         } else if (taskName.startsWith(Commands.deadline.toString())) {
-            addedTask = DeadlineTask.DeadlineTaskBuilder(taskName);
+            addedTask = DeadlineTask.buildDeadlineTask(taskName);
             assert(addedTask.toString().startsWith("[D]"));
             assert(addedTask.toString().contains("(by:"));
         } else if (taskName.startsWith(Commands.event.toString())) {
-            addedTask = EventTask.EventTaskBuilder(taskName);
+            addedTask = EventTask.buildEventTask(taskName);
             assert(addedTask.toString().startsWith("[E]"));
             assert(addedTask.toString().contains("(at:"));
         } else {
@@ -38,6 +40,14 @@ public class TaskManager {
 
         return TaskList.add(addedTask);
     }
+
+    public static void generateAndAddFromFile(List<String> savedTaskList) {
+        for (String savedTask : savedTaskList) {
+            Task addedTask = Task.generateFromString(savedTask);
+            TaskList.add(addedTask);
+        }
+    }
+
 
     /**
      *  Returns a string representation of the list of tasks.

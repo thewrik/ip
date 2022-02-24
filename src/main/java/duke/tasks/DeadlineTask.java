@@ -13,6 +13,12 @@ public class DeadlineTask extends Task {
         super(taskName, "D");
         this.deadline = deadline;
     }
+
+    private DeadlineTask(String taskName, LocalDate deadline, Boolean isTaskDone) {
+        super(taskName, "D", isTaskDone);
+        this.deadline = deadline;
+    }
+
     /**
      * Factory method to generate Deadline task.
      *
@@ -21,7 +27,7 @@ public class DeadlineTask extends Task {
      * @return the DeadlineTask created.
      * @throws InvalidParameterException If no name is passed, or an invalid date is passed.
      */
-    public static DeadlineTask DeadlineTaskBuilder(String taskName) throws InvalidParameterException {
+    public static DeadlineTask buildDeadlineTask(String taskName) throws InvalidParameterException {
         if (taskName.length() == Commands.deadline.toString().length()) {
             throw new InvalidParameterException("A Deadline Task must have a task name.\nPlease try again!");
         }
@@ -35,6 +41,15 @@ public class DeadlineTask extends Task {
                 LocalDate.parse(
                         taskName.substring(lastIndexOfBackslash + 4),
                         DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+    }
+
+    public static DeadlineTask generateFromString(String savedTask) {
+        Boolean isTaskDone = savedTask.charAt(7)=='X';
+        int indexOfTimeStamp = savedTask.lastIndexOf("(by: ");
+        String taskName = savedTask.substring(10, indexOfTimeStamp).trim();
+        LocalDate deadline = LocalDate.parse(savedTask.substring(indexOfTimeStamp + 5, savedTask.length() - 1),
+            DateTimeFormatter.ofPattern("MMM dd, yyyy"));
+        return new DeadlineTask(taskName, deadline, isTaskDone);
     }
 
     /**

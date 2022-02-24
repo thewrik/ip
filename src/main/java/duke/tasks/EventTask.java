@@ -15,6 +15,12 @@ public class EventTask extends Task {
         this.eventTime = eventTime;
     }
 
+    private EventTask(String taskName, LocalDate eventTime, Boolean isDone) {
+        super(taskName, "E", isDone);
+        this.eventTime = eventTime;
+    }
+
+
     /**
      * Factory method to generate Event task.
      *
@@ -23,7 +29,7 @@ public class EventTask extends Task {
      * @return the EventTask created.
      * @throws InvalidParameterException If no name is passed, or an invalid date is passed.
      */
-    public static EventTask EventTaskBuilder(String taskName) throws InvalidParameterException {
+    public static EventTask buildEventTask(String taskName) throws InvalidParameterException {
         if (taskName.length() == Commands.event.toString().length()) {
             throw new InvalidParameterException("An Event Task must have a task name.\nPlease try again!");
         }
@@ -38,6 +44,14 @@ public class EventTask extends Task {
                 DateTimeFormatter.ofPattern("dd-MM-yyyy")));
     }
 
+    public static EventTask generateFromString(String savedTask) {
+        Boolean isTaskDone = savedTask.charAt(7)=='X';
+        int indexOfTimeStamp = savedTask.lastIndexOf("(at: ");
+        String taskName = savedTask.substring(10, indexOfTimeStamp).trim();
+        LocalDate eventTime = LocalDate.parse(savedTask.substring(indexOfTimeStamp + 5, savedTask.length() - 1),
+            DateTimeFormatter.ofPattern("MMM dd, yyyy"));
+        return new EventTask(taskName, eventTime, isTaskDone);
+    }
 
     /**
      * Generates the string representation of the Task.

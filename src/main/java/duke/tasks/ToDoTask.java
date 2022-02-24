@@ -8,6 +8,11 @@ public class ToDoTask extends Task {
         super(taskName, "T");
     }
 
+    private ToDoTask(String taskName, Boolean isDone) {
+        super(taskName, "T", isDone);
+    }
+
+
     /**
      * Factory method to generate TODO task.
      *
@@ -21,6 +26,11 @@ public class ToDoTask extends Task {
             throw new InvalidParameterException("A Todo Task must have a task name.\nPlease try again!");
         }
         return new ToDoTask(taskName.substring(Commands.todo.toString().length() + 1).trim());
+    }
+
+    public static ToDoTask generateFromString(String savedTask) {
+        Boolean isTaskDone = savedTask.charAt(7)=='X';
+        return new ToDoTask(savedTask.substring(10), isTaskDone);
     }
 
 }
